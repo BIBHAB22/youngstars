@@ -1,0 +1,48 @@
+/* Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; /* Solid background color */
+    color: white;
+    top: 0;
+    position: fixed; /* Fix navbar at the top */
+    height: 10%;
+    width: 100%; /* Stretch navbar across the screen */
+    z-index: 1000; /* Ensure navbar is on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  }
+  
+  .navbar-left h2 {
+    margin: 40px;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .navbar-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 20px;
+  }
+  
+  .navbar-right a:hover {
+    text-decoration: underline;
+  }
+  
+  /* .add-player-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .add-player-btn:hover {
+    color: #ff0;
+  } */
+  

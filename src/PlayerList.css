@@ -1,0 +1,40 @@
+.player-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Aligns cards to the left */
+    padding-left: 20px; /* Adds some padding to the left for spacing */
+  }
+  
+  .player-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .player-card:hover {
+    transform: translateY(-5px); /* Adds a hover effect */
+  }
+  
+  .player-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .player-actions button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .player-actions button:hover {
+    background-color: #0056b3;
+  }
+  
