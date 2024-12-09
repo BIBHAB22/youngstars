@@ -12,7 +12,7 @@ import Navbar from "./Components/Navbar";
 import Login from "./Login";
 import AddPlayer from "./AddPlayer";
 import Scoreboard from "./Scoreboard";
-
+import PlayerForm from "./PlayerForm";
 const App = () => {
   const [players, setPlayers] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
@@ -30,10 +30,11 @@ const App = () => {
   const [batsmanRuns, setBatsmanRuns] = useState({});
   const [bowlerBalls, setBowlerBalls] = useState({});
   const [wickets, setWickets] = useState(0);
-
   const [runs, setRuns] = useState(0);
   const [batsman, setBatsman] = useState("");
   const [bowler, setBowler] = useState("");
+  
+
 
   const addPlayer = (player) => {
     setPlayers([...players, player]);
@@ -68,7 +69,6 @@ const App = () => {
       alert("Please fill all fields correctly!");
       return;
     }
-
     // Update team score and current over
     setTeamScore((prevScore) => prevScore + runs);
 
@@ -77,7 +77,6 @@ const App = () => {
       const newOver = [...prevOver, runs];
       return newOver.length > 6 ? newOver.slice(-6) : newOver;
     });
-
     // Update batsman's runs
     setBatsmanRuns((prevRuns) => ({
       ...prevRuns,
@@ -151,7 +150,7 @@ const App = () => {
             path="/add-player"
             element={
               isLoggedIn ? (
-                <AddPlayer
+                <PlayerForm
                   addPlayer={addPlayer}
                   editIndex={editIndex}
                   playerToEdit={playerToEdit}
@@ -181,6 +180,7 @@ const App = () => {
                   setBowler={setBowler}
                   handleRunInput={handleRunInput}
                   handleWicket={handleWicket}
+                
                 />
               ) : (
                 <Navigate to="/login" />
