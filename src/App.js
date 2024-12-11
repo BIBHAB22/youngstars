@@ -13,6 +13,7 @@ import Login from "./Login";
 import AddPlayer from "./AddPlayer";
 import Scoreboard from "./Scoreboard";
 import PlayerForm from "./PlayerForm";
+
 const App = () => {
   const [players, setPlayers] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
@@ -30,11 +31,10 @@ const App = () => {
   const [batsmanRuns, setBatsmanRuns] = useState({});
   const [bowlerBalls, setBowlerBalls] = useState({});
   const [wickets, setWickets] = useState(0);
+  const [dotBalls, setDotBalls] = useState(0); // New state for dot balls
   const [runs, setRuns] = useState(0);
   const [batsman, setBatsman] = useState("");
   const [bowler, setBowler] = useState("");
-  
-
 
   const addPlayer = (player) => {
     setPlayers([...players, player]);
@@ -64,19 +64,21 @@ const App = () => {
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
+
   const handleRunInput = () => {
-    if (runs <= 0 || !batsman || !bowler) {
-      alert("Please fill all fields correctly!");
-      return;
-    }
     // Update team score and current over
     setTeamScore((prevScore) => prevScore + runs);
 
-    // Update the current over (max 6 balls per over)
     setCurrentOver((prevOver) => {
       const newOver = [...prevOver, runs];
       return newOver.length > 6 ? newOver.slice(-6) : newOver;
     });
+
+    // Update dot ball count
+    if (runs === 0) {
+      setDotBalls((prevDotBalls) => prevDotBalls + 1);
+    }
+
     // Update batsman's runs
     setBatsmanRuns((prevRuns) => ({
       ...prevRuns,
@@ -89,15 +91,11 @@ const App = () => {
       [bowler]: (prevBalls[bowler] || 0) + 1,
     }));
 
-    // Reset the run input field after adding a run
-    setRuns(0);
+    setRuns(0); // Reset the run input field after adding a run
   };
 
   const handleWicket = () => {
-    if (!bowler) {
-      alert("Please enter the bowler's name!");
-      return;
-    }
+    if (!bowler) return; // Skip if bowler name is missing
 
     setWickets((prevWickets) => prevWickets + 1);
 
@@ -114,7 +112,6 @@ const App = () => {
       <div>
         <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Routes>
-          {/* Home page with player list */}
           <Route
             path="/"
             element={
@@ -133,19 +130,12 @@ const App = () => {
               )
             }
           />
-          {/* Login page */}
           <Route
             path="/login"
             element={
-              isLoggedIn ? (
-                <Navigate to="/" />
-              ) : (
-                <Login onLoginSuccess={handleLoginSuccess} />
-              )
+              isLoggedIn ? <Navigate to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />
             }
           />
-
-          {/* Add Player page */}
           <Route
             path="/add-player"
             element={
@@ -162,8 +152,6 @@ const App = () => {
               )
             }
           />
-
-          {/* Scoreboard page */}
           <Route
             path="/scoreboard"
             element={
@@ -172,6 +160,7 @@ const App = () => {
                   teamScore={teamScore}
                   wickets={wickets}
                   currentOver={currentOver}
+                  dotBalls={dotBalls} // Pass dot balls
                   runs={runs}
                   batsman={batsman}
                   bowler={bowler}
@@ -180,7 +169,6 @@ const App = () => {
                   setBowler={setBowler}
                   handleRunInput={handleRunInput}
                   handleWicket={handleWicket}
-                
                 />
               ) : (
                 <Navigate to="/login" />

@@ -13,7 +13,7 @@ const Scoreboard = ({
   setBowler,
   handleRunInput,
   handleWicket,
-  
+
 }) => {
   const handleRunChange = (e) => setRuns(parseInt(e.target.value) || 0);
   const handleBatsmanChange = (e) => setBatsman(e.target.value);
@@ -28,6 +28,7 @@ const Scoreboard = ({
       <p>
         <strong>Current Over:</strong> {currentOver.join(", ")}
       </p>
+
       <div className="simulation">
         <h3>Simulate Match Input</h3>
         <input
