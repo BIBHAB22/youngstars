@@ -1,75 +1,115 @@
-  /* Player form container */
-  .player-form-container {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    margin-bottom: 20px;
+/* Register Page Container */
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f4f9;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0; /* Remove unwanted outer spacing */
+  box-sizing: border-box; /* Include padding and border in element dimensions */
+}
+
+/* Register Box */
+.register-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make container width responsive */
+  max-width: 600px; /* Restrict max width for larger screens */
+  text-align: center;
+  box-sizing: border-box; /* Include padding and borders in width */
+}
+
+/* Form Styling */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Add spacing between form elements */
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 80px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Ensure inputs take full width of container */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #4CAF50; /* Highlight border on focus */
+}
+
+/* Submit Button */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: auto; /* Ensure button width adjusts properly */
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .register-box {
+    width: 90%; /* Ensure the container takes up most of the screen */
+    padding: 15px; /* Adjust padding for smaller screens */
   }
-  
-  /* Input field styling for player form */
+
   input[type="text"],
   input[type="number"],
-  input[type="text"]:focus,
-  input[type="number"]:focus {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    outline: none;
+  input[type="email"],
+  input[type="password"] {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 8px; /* Compact padding */
   }
-  
-  input[type="text"]:focus,
-  input[type="number"]:focus {
-    border-color: #4CAF50;
-  }
-  
-  /* Button styling for player form */
+
   button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 14px; /* Adjust button font size */
+    padding: 10px 15px;
   }
-  
-  /* Edit form styling */
-  .edit-form {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+}
+
+@media (max-width: 480px) {
+  .register-box {
+    width: 95%; /* Use almost full width for very small screens */
+    margin-top: 50px; /* Reduce top margin for compact spacing */
   }
-  
-  /* Edit input styling */
-  .edit-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 13px; /* Smaller input font size for compact view */
+    padding: 7px; /* Compact padding */
   }
-  
-  .edit-form button {
-    background-color: #007bff;
-    color: white;
+
+  button {
+    font-size: 13px; /* Smaller button font size */
+    padding: 8px 10px; /* Compact padding */
   }
-  
-  .edit-form button:hover {
-    background-color: #0056b3;
-  }
-  
+}

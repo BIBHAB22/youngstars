@@ -1,49 +1,100 @@
 /* Scoreboard Page Container */
 .scoreboard-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f4f4f9;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-  }
-  
-  /* Scoreboard Box */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f9;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0; /* Remove unwanted outer spacing */
+  box-sizing: border-box; /* Include padding and border in element dimensions */
+}
+
+/* Scoreboard Box */
+.scoreboard {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make scoreboard width responsive */
+  max-width: 600px; /* Restrict max width for larger screens */
+  text-align: center;
+  box-sizing: border-box; /* Include padding and borders in width */
+  margin-top: 120px;
+}
+
+/* Scoreboard Header */
+.scoreboard h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Scoreboard Score Text */
+.scoreboard p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+}
+
+/* Logout Button */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  width: auto; /* Ensure the button width adjusts properly */
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .scoreboard {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin-top: 100px;
-    max-width: 600px;
-    text-align: center;
+    width: 90%; /* Ensure the scoreboard takes up most of the screen */
+    padding: 15px; /* Adjust padding for smaller screens */
+    margin-top: 120px;
   }
-  
-  /* Scoreboard Header */
+
   .scoreboard h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: bold;
+    font-size: 22px; /* Slightly smaller heading size */
   }
-  
-  /* Scoreboard Score Text */
+
   .scoreboard p {
-    font-size: 18px;
-    margin: 10px 0;
-    color: #333;
+    font-size: 16px; /* Reduce paragraph font size */
   }
-  
-  /* Logout Button */
+
   button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
+    font-size: 14px; /* Adjust button font size */
+    padding: 8px 15px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .scoreboard {
+    width: 95%; /* Use almost full width for very small screens */
+    margin-top: 120px; /* Reduce top margin for compact spacing */
+  }
+
+  .scoreboard h2 {
+    font-size: 20px; /* Further reduce heading size for tiny screens */
+  }
+
+  .scoreboard p {
+    font-size: 14px; /* Reduce paragraph font size for compact view */
+  }
+
+  button {
+    font-size: 13px; /* Smaller button font size for small screens */
+    padding: 8px 10px; /* Compact padding for better fit */
+  }
+}

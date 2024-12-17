@@ -6,16 +6,25 @@
   background-color: #333;
   color: white;
   padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left h2 {
   margin: 0;
+  font-size: 1.5rem;
+  color: white;
 }
 
+/* Right Side Links and Buttons */
 .navbar-right {
   display: flex;
   gap: 15px;
   align-items: center;
+  margin-right: 40px;
 }
 
 .navbar-right a,
@@ -27,12 +36,12 @@
   padding: 10px 15px;
   cursor: pointer;
   font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .navbar-right button {
   background-color: #0066cc;
-  border-radius: 5px;
-  transition: background-color 0.3s;
 }
 
 .navbar-right button:hover {
@@ -48,31 +57,33 @@
   color: white;
   cursor: pointer;
 }
-button.hamburger{
-  color: white;
-  margin: 0;
-  padding: 0;
+
+.hamburger:focus {
+  outline: none;
 }
 
 /* Responsive Styling */
 @media (max-width: 768px) {
+  /* Hide navbar-right by default */
   .navbar-right {
     display: none;
     flex-direction: column;
     background-color: #333;
     position: absolute;
     top: 60px;
-    right: 0;
+    right: 10px;
     width: 200px;
     border-radius: 0 0 5px 5px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
+  /* Show navbar-right when open */
   .navbar-right.open {
     display: flex;
   }
 
+  /* Show hamburger menu on smaller screens */
   .hamburger {
     display: block;
   }

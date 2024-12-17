@@ -1,0 +1,31 @@
+/* PlayersPage.css */
+.players-page {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .players-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .player-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .player-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .player-card p {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+  

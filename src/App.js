@@ -1,23 +1,18 @@
-// App.js
 import "./App.css";
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import PlayerList from "./PlayerList";
 import Navbar from "./Components/Navbar";
 import Login from "./Login";
 import AddPlayer from "./AddPlayer";
 import Scoreboard from "./Scoreboard";
 import PlayerForm from "./PlayerForm";
+import PlayersPage from "./PlayersPage";
 
 const App = () => {
   const [players, setPlayers] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Make sure this is initially false
   const [playerToEdit, setPlayerToEdit] = useState({
     name: "",
     runs: "",
@@ -38,6 +33,7 @@ const App = () => {
 
   const addPlayer = (player) => {
     setPlayers([...players, player]);
+    window.location.href = '/players';  // Redirect to the Players page after adding the player
   };
 
   const deletePlayer = (index) => {
@@ -58,34 +54,29 @@ const App = () => {
   };
 
   const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(true);  // Ensure this sets the login status
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(false);  // Ensure this sets the logout status
   };
 
   const handleRunInput = () => {
-    // Update team score and current over
     setTeamScore((prevScore) => prevScore + runs);
-
     setCurrentOver((prevOver) => {
       const newOver = [...prevOver, runs];
       return newOver.length > 6 ? newOver.slice(-6) : newOver;
     });
 
-    // Update dot ball count
     if (runs === 0) {
       setDotBalls((prevDotBalls) => prevDotBalls + 1);
     }
 
-    // Update batsman's runs
     setBatsmanRuns((prevRuns) => ({
       ...prevRuns,
       [batsman]: (prevRuns[batsman] || 0) + runs,
     }));
 
-    // Update bowler's balls
     setBowlerBalls((prevBalls) => ({
       ...prevBalls,
       [bowler]: (prevBalls[bowler] || 0) + 1,
@@ -114,66 +105,54 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={
-              isLoggedIn ? (
-                <div className="home-page-background">
-                  <div className="home-page">
-                    <PlayerList
-                      players={players}
-                      deletePlayer={deletePlayer}
-                      updatePlayer={updatePlayer}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
+            element={isLoggedIn ? <div className="home-page"></div> : <Navigate to="/login" />}
           />
           <Route
             path="/login"
-            element={
-              isLoggedIn ? <Navigate to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />
-            }
+            element={isLoggedIn ? <Navigate to="/players" /> : <Navigate to="/players" />}
           />
           <Route
             path="/add-player"
-            element={
-              isLoggedIn ? (
-                <PlayerForm
-                  addPlayer={addPlayer}
-                  editIndex={editIndex}
-                  playerToEdit={playerToEdit}
-                  saveUpdatedPlayer={saveUpdatedPlayer}
-                  handleLogout={handleLogout}
-                />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
+            element={isLoggedIn ? (
+              <PlayerForm
+                addPlayer={addPlayer}
+                editIndex={editIndex}
+                playerToEdit={playerToEdit}
+                saveUpdatedPlayer={saveUpdatedPlayer}
+                handleLogout={handleLogout}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )}
+          />
+          <Route
+            path="/players"
+            element={isLoggedIn ? (
+              <PlayersPage players={players} />
+            ) : (
+              <Navigate to="/login" />
+            )}
           />
           <Route
             path="/scoreboard"
-            element={
-              isLoggedIn ? (
-                <Scoreboard
-                  teamScore={teamScore}
-                  wickets={wickets}
-                  currentOver={currentOver}
-                  dotBalls={dotBalls} // Pass dot balls
-                  runs={runs}
-                  batsman={batsman}
-                  bowler={bowler}
-                  setRuns={setRuns}
-                  setBatsman={setBatsman}
-                  setBowler={setBowler}
-                  handleRunInput={handleRunInput}
-                  handleWicket={handleWicket}
-                />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
+            element={isLoggedIn ? (
+              <Scoreboard
+                teamScore={teamScore}
+                wickets={wickets}
+                currentOver={currentOver}
+                dotBalls={dotBalls}
+                runs={runs}
+                batsman={batsman}
+                bowler={bowler}
+                setRuns={setRuns}
+                setBatsman={setBatsman}
+                setBowler={setBowler}
+                handleRunInput={handleRunInput}
+                handleWicket={handleWicket}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )}
           />
         </Routes>
       </div>

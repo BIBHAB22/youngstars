@@ -19,6 +19,7 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
       </button>
       <div className={`navbar-right ${menuOpen ? "open" : ""}`}>
         <Link to="/">Home</Link>
+        <Link to="/players">Our Players</Link>
         <Link to="/add-player">Register</Link>
         <Link to="/scoreboard">Scoreboard</Link>
         {isLoggedIn ? (
