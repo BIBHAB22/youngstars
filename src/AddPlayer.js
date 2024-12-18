@@ -1,10 +1,15 @@
-// AddPlayer.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlayerForm from "./PlayerForm";
 import "./Addplayer.css";
 
 const AddPlayer = ({ addPlayer, editIndex, playerToEdit, saveUpdatedPlayer, handleLogout }) => {
   const [playerData, setPlayerData] = useState(playerToEdit);
+
+  useEffect(() => {
+    if (editIndex !== null && playerToEdit) {
+      setPlayerData(playerToEdit);
+    }
+  }, [editIndex, playerToEdit]);
 
   const handleInputChange = (e) => {
     setPlayerData({
@@ -15,12 +20,17 @@ const AddPlayer = ({ addPlayer, editIndex, playerToEdit, saveUpdatedPlayer, hand
 
   const handleSave = (e) => {
     e.preventDefault();
-    saveUpdatedPlayer(playerData);
+    saveUpdatedPlayer(playerData); // This function must be passed as a prop to this component
   };
 
   return (
     <div>
-      <PlayerForm addPlayer={addPlayer} />
+      <PlayerForm 
+        addPlayer={addPlayer} 
+        saveUpdatedPlayer={saveUpdatedPlayer} // Ensure this is being passed down
+        editIndex={editIndex} 
+        playerToEdit={playerData} 
+      />
       {editIndex !== null && (
         <form className="edit-form" onSubmit={handleSave}>
           <input

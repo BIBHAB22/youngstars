@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const PlayerForm = ({ addPlayer, saveUpdatedPlayer, editIndex, playerToEdit = {} }) => {
+const PlayerForm = ({ addPlayer, editIndex, playerToEdit = {} }) => {
   const [player, setPlayer] = useState({
     name: "",
     runs: "",
@@ -24,12 +25,14 @@ const PlayerForm = ({ addPlayer, saveUpdatedPlayer, editIndex, playerToEdit = {}
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     if (editIndex !== null) {
       // Save updated player when editing
-      saveUpdatedPlayer(player);
+        const response = await axios.put(`http://localhost:5000/api/players/${player.id}`, player);
+        console.log(response);
+    
     } else {
       // Add new player
       addPlayer(player);
@@ -93,5 +96,6 @@ const PlayerForm = ({ addPlayer, saveUpdatedPlayer, editIndex, playerToEdit = {}
     </form>
   );
 };
+
 
 export default PlayerForm;

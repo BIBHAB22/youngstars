@@ -14,14 +14,13 @@
 /* Scoreboard Box */
 .scoreboard {
   background-color: #fff;
-  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Make scoreboard width responsive */
-  max-width: 600px; /* Restrict max width for larger screens */
   text-align: center;
   box-sizing: border-box; /* Include padding and borders in width */
-  margin-top: 120px;
+  margin: 120px auto;
+  max-width: 800px;
+  color: #333333;
 }
 
 /* Scoreboard Header */
@@ -34,14 +33,14 @@
 
 /* Scoreboard Score Text */
 .scoreboard p {
-  font-size: 18px;
+  font-size: 1.2rem;
   margin: 10px 0;
   color: #333;
 }
 
 /* Logout Button */
-button {
-  background-color: #4CAF50;
+.scoreboard button {
+  background-color: #0066cc;
   color: white;
   border: none;
   border-radius: 4px;
@@ -54,7 +53,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #004386;
 }
 
 /* Responsive Design */
@@ -76,6 +75,7 @@ button:hover {
   button {
     font-size: 14px; /* Adjust button font size */
     padding: 8px 15px;
+    margin-right: 20px;
   }
 }
 
